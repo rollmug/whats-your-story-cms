@@ -82,6 +82,7 @@ function Build() {
                 setMysqlAlertType('error');
                 setPageContent(<AppInitFailure></AppInitFailure>);
                 setLoading('');
+                setBtnHidden('hidden');
                 installFailure();
                 dbInitialized(false);
             }
@@ -101,6 +102,7 @@ function Build() {
                 setMysqlAlert(data.error);
                 setMysqlAlertType('error');
                 setLoading('');
+                setBtnHidden('hidden');
                 setPageContent(<AppInitFailure></AppInitFailure>);
                 installFailure();
             }
@@ -139,8 +141,8 @@ function Build() {
     var directusUp = false, mysqlUp = false;
 
     if (typeof services === 'object' && Object.keys(services).length > 0) {
-        if (data.services) {
-
+        if (services.services) {
+            const serv = services.services;
             if (typeof serv.directus === 'object') {
                 if (serv.directus.State === 'running') {
                     directusUp = true;

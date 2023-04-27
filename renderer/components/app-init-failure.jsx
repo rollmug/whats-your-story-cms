@@ -23,7 +23,7 @@ const AppInitFailure = () => {
         forceUninstall();
 
         ipcRenderer.on('app-uninstalled', (event, data) => {
-            setBtn(<Link href="/"><Button variant="filled">Fix Problems</Button></Link>);
+            setBtn(<Link href="/"><Button variant="filled">Re-initialize App</Button></Link>);
         });
 
         return () => {

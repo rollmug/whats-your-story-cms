@@ -19,8 +19,8 @@ const launchDirectus = async (createUser) => {
         ],
         delay: 1000,
         interval: 800,
-        timeout: 60000,
-        tcpTimeout: 60000
+        timeout: 90000,
+        tcpTimeout: 90000
     }
 
     const dockerExists = await fs.pathExists(dockerFile);
