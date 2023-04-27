@@ -1,0 +1,12 @@
+appId: com.rlmg.directus
+productName: What’s Your Story CMS
+copyright: Copyright © 2023 RLMG / Dave Kobrenski
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null

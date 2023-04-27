@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "name": "directus-server-manager",
+  "description": "Directus CMS Manager",
+  "version": "1.0.1",
+  "author": "Dave Kobrenski <dave@rlmg.com>",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nextron",
+    "build": "nextron build",
+    "build:win64": "nextron build --win --x64",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@hookform/resolvers": "^3.1.0",
+    "@material-tailwind/react": "^1.4.2",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.1",
+    "axios": "^1.3.6",
+    "command-exists": "^1.2.9",
+    "electron-is-dev": "^2.0.0",
+    "electron-serve": "^1.1.0",
+    "electron-store": "^8.1.0",
+    "fix-path": "^3.0.0",
+    "fs-extra": "^11.1.1",
+    "fs-json-store": "^8.0.1",
+    "generate-password": "^1.7.0",
+    "lookpath": "^1.2.2",
+    "react-hook-form": "^7.43.9",
+    "spawn-sync": "^2.0.0",
+    "swr": "^2.1.5",
+    "upath": "^2.0.1",
+    "wait-on": "^7.0.1",
+    "yup": "^1.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "autoprefixer": "^10.4.14",
+    "electron": "^21.3.3",
+    "electron-builder": "^23.6.0",
+    "next": "^12.3.4",
+    "nextron": "^8.5.0",
+    "postcss": "^8.4.22",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.3.1"
+  }
+}
