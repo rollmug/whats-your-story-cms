@@ -1,12 +1,12 @@
 ## Usage
 
 ```sh
-git clone (url)
+git clone https://github.com/rollmug/whats-your-story-cms.git
 npm install
 npm run dev
 ```
 
-Build the app:
+Build the desktop app:
 
 ```sh
 npm run build
