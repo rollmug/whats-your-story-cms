@@ -1,3 +1,8 @@
+
+<p align="center">
+    <img src="https://cdn.statically.io/gh/rollmug/static-assets/main/hcc-redux/whats-your-story-app-screenshot.png" >
+</p>
+
 ## Usage
 
 ```sh
