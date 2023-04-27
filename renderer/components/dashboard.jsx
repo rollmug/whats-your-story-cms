@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import useSWR from 'swr';
 import Alert from '@mui/material/Alert';
+import Heading from './heading';
 import LinearProgress from '@mui/material/LinearProgress';
 import DashboardExited from './dashboard-exited';
 import DashboardRunning from './dashboard-running';

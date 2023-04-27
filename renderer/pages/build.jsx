@@ -16,10 +16,12 @@ const ipcRenderer = electron.ipcRenderer || false;
 
 const dockerFetch = () => dockerConfig().then(res => res);
 const settingsFetch = () => getSettingsFromCache().then(res => res);
+const dockerApp = () => dockerAppStatus().then(res => res);
 
 function Build() {
     const { data: appSettings, error: appError, isLoading: appLoading } = useSWR('app/settings', settingsFetch);
     const { data: docker, error: dockerError, isLoading: dockerLoading } = useSWR('docker/status', dockerFetch);
+    const { data: services } = useSWR('docker/services', dockerApp);
 
     const [mysqlAlert, setMysqlAlert] = React.useState('Settings saved, and app installed.');
     const [mysqlAlertType, setMysqlAlertType] = React.useState('success');
@@ -68,7 +70,11 @@ function Build() {
             if (data.success) {
                 setMysqlAlert('Database initialized and running. Initializing CMS...');
                 setMysqlAlertType('info');
-                setPageContent(<Fragment><article className="prose prose-slate my-4">So far so good! Please wait while the CMS is configured. This can take a minute...</article></Fragment>);
+                setPageContent(<Fragment>
+                    <article className="prose prose-slate my-4">
+                        So far so good! Please wait while the CMS is configured. This can take a few minutes the first time you run this, so please be patient and leave this window open...
+                    </article>
+                </Fragment>);
                 initDirectus(true); //the true is if it should create the initial user
                 dbInitialized(true);
             } else {
@@ -104,7 +110,6 @@ function Build() {
             ipcRenderer.removeAllListeners('mysql-launch');
             ipcRenderer.removeAllListeners('directus-launch');
         }
-
     }, []);
 
     if (dockerError) {
@@ -131,11 +136,30 @@ function Build() {
         );
     }
 
+    var directusUp = false, mysqlUp = false;
+
+    if (typeof services === 'object' && Object.keys(services).length > 0) {
+        if (data.services) {
+
+            if (typeof serv.directus === 'object') {
+                if (serv.directus.State === 'running') {
+                    directusUp = true;
+                }
+            }
+
+            if (typeof serv.mysql === 'object') {
+                if (serv.mysql.State === 'running') {
+                    mysqlUp = true;
+                }
+            }
+        }
+    }
+
     if (typeof docker === 'object' && Object.keys(docker).length > 0) {
         if (docker.installed === true && docker.running === true) {
-
             if (typeof appSettings === 'object' && Object.keys(appSettings).length > 0) {
-                if (appSettings.installed === true && appSettings.dbInitialized === true) {
+
+                if (appSettings.installed === true && appSettings.dbInitialized === true && directusUp && mysqlUp) {
                     return (
                         <Layout>
                             <div>
