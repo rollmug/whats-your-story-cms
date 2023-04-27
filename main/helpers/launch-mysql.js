@@ -28,7 +28,7 @@ const launchMysql = async () => {
         //console.log('1. Docker compose file exists.');
 
         try {
-            const results = await execShellCommand(`docker-compose -f ${dockerFile} up -d mysql`);
+            const results = await execShellCommand(`docker-compose -f '${dockerFile}' up -d mysql`);
 
             // console.log('2. Docker compose results:');
             // console.log(results);
@@ -50,7 +50,7 @@ const launchMysql = async () => {
         }
     } else {
         //error - no docker file found
-        returnData.error = `Cannot locate the needed file(s) at ${dockerFile}`;
+        returnData.error = `Cannot locate the needed file(s) at '${dockerFile}'`;
     }
 
     return returnData;

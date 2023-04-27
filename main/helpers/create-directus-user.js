@@ -54,7 +54,7 @@ const createDirectusUser = async (userData) => {
     if (dockerExists === true) {
         if (userExists) {
             //update their password, in case they changed it
-            const cmd = `docker-compose -f ${dockerFile} exec directus npx directus users passwd --email '${userData.email}' --password '${userData.pass}'`;
+            const cmd = `docker-compose -f '${dockerFile}' exec directus npx directus users passwd --email '${userData.email}' --password '${userData.pass}'`;
             const results = await execShellCommand(cmd);
 
             if (results.includes('Cannot connect to the Docker daemon')) {
@@ -66,7 +66,7 @@ const createDirectusUser = async (userData) => {
         } else {
             try {
                 const roleID = 'e9e725cd-25a0-4c96-8677-1a0dc4793150';
-                const cmd = `docker-compose -f ${dockerFile} exec directus npx directus users create --email '${userData.email}' --password '${userData.pass}' --role '${roleID}'`;
+                const cmd = `docker-compose -f '${dockerFile}' exec directus npx directus users create --email '${userData.email}' --password '${userData.pass}' --role '${roleID}'`;
                 const results = await execShellCommand(cmd);
 
                 if (results.includes('Cannot connect to the Docker daemon')) {

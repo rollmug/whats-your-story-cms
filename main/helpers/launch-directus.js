@@ -29,7 +29,7 @@ const launchDirectus = async (createUser) => {
         //console.log('3. Docker compose file exists.');
 
         try {
-            const results = await execShellCommand(`docker-compose -f ${dockerFile} up -d`);
+            const results = await execShellCommand(`docker-compose -f '${dockerFile}' up -d`);
 
             // console.log('4. Docker compose up results:');
             // console.log(results);

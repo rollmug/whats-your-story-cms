@@ -24,9 +24,10 @@ function Dashboard() {
     if (error) {
         return (
             <Fragment>
-                <Heading text="Error"></Heading>
                 <Fragment>
-                    <p>An error was encountered.</p>
+                    <Alert severity="info" className="my-6">Loading dashboard...</Alert>
+                    <article className="prose prose-slate my-4">Hang tight. Checking the status of all services and loading the dashboard.</article>
+                    <LinearProgress></LinearProgress>
                 </Fragment>
             </Fragment>
         );

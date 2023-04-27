@@ -44,7 +44,7 @@ const forceUninstall = async () => {
 
     if (dockerExists === true) {
         try {
-            const cmd = `docker-compose -f ${dockerFile} down`;
+            const cmd = `docker-compose -f '${dockerFile}' down`;
             const results = await execShellCommand(cmd);
             await removeAppDir();
 

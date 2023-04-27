@@ -22,8 +22,21 @@ if (isProd) {
   app.setPath('userData', `${app.getPath('userData')} (development)`);
 }
 
+const checkInitAppSettings = async () => {
+  const appSettings = await settings.get('appSettings');
+  const userData = app.getPath('userData').replace(' (development)', '');
+  if (typeof appSettings === 'object' && Object.keys(appSettings) > 0) {
+    if (!appSettings.directory || appSettings.directory === '') {
+      settings.set('appSettings.directory', userData);
+    }
+  } else {
+    settings.set('appSettings', { directory: userData });
+  }
+}
+
 (async () => {
   await app.whenReady();
+  await checkInitAppSettings();
 
   const mainWindow = createWindow('main', {
     width: 1024,

@@ -91,7 +91,7 @@ const InitialSetup = () => {
         setDirBtn({
             color: "green",
             text: "Change Folder",
-            helper: <span><b>Great!</b> Here’s where we’ll install your database and app files:</span>
+            helper: <span>Here’s where we’ll install your database and app files:</span>
         });
     }
 
@@ -178,29 +178,32 @@ const InitialSetup = () => {
         <Fragment>
             <WelcomeAbout></WelcomeAbout>
 
-            <article className="prose prose-slate mt-2">
+            {/* <article className="prose prose-slate mt-2">
                 <p>Use the form below to configure your Content Management System (CMS) and server settings.</p>
-            </article>
+            </article> */}
+
+            <Alert severity='success' className="mt-6">Use the form below to configure your Content Management System (CMS) and server settings.</Alert>
 
             {errorMsg}
 
             <Card color="transparent" shadow={false} className=" -mt-2 text-gray-800 ">
                 <form className="mt-8 mb-2 max-w-screen-lg" onSubmit={handleSubmit(handleFormSubmit)}>
                     <div className="mb-2 flex flex-col gap-4">
-                        <div className="mb-3 flex flex-col gap-1">
-                            <Typography variant="small" color="blue-gray" className="mb-2 font-semibold ">
-                                App Directory:
-                            </Typography>
-                            <Button variant="filled" color={dirBtn.color} onClick={openDirDialog}>{dirBtn.text}</Button>
-
-                            <Typography className='mt-1' variant="small">{dirBtn.helper}</Typography>
-                            {directory && <Typography variant="small" color="green">{directory}</Typography>}
-
-                            <div className={directory !== '' ? 'hidden' : 'hidden'}>
-                                <Input size="lg" readOnly label="Directory" {...register("directory")} value={directory} />
+                        
+                        
+                        <div className="hidden">
+                            <div className="mb-3 flex flex-col gap-1">
+                                <Typography variant="small" color="blue-gray" className="mb-2 font-semibold ">
+                                    App Directory:
+                                </Typography>
+                                <Button variant="filled" color={dirBtn.color} onClick={openDirDialog}>{dirBtn.text}</Button>
+                                <Typography className='mt-1' variant="small">{dirBtn.helper}</Typography>
+                                {directory && <Typography variant="small" color="green">{directory}</Typography>}
+                                <div className={directory !== '' ? 'hidden' : 'hidden'}>
+                                    <Input size="lg" readOnly label="Directory" {...register("directory")} value={directory} />
+                                </div>
+                                {errors.directory && <ErrorText text={errors.directory.message}></ErrorText>}
                             </div>
-
-                            {errors.directory && <ErrorText text={errors.directory.message}></ErrorText>}
                         </div>
 
                         <div className="flex flex-col gap-1">
@@ -208,7 +211,7 @@ const InitialSetup = () => {
                                 Login Details:
                             </Typography>
                             <Typography variant="small">
-                                These are the credentials you’ll use to login to your CMS.
+                                Enter your email and a new password. These are the credentials you’ll use to login to your CMS.
                             </Typography>
                         </div>
 
@@ -217,7 +220,7 @@ const InitialSetup = () => {
 
                         <Input size="lg" label="Password" {...register("password")} error={errors.password ? true : false} />
                         <Typography variant="small" className="-mt-3">
-                            Remember this password, as you’ll need it to login.
+                            Minimum of 8 characters.
                         </Typography>
                         {errors.password && <ErrorText text={errors.password.message}></ErrorText>}
 

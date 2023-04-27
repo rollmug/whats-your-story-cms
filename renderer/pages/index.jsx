@@ -58,7 +58,7 @@ function Home() {
             } else {
                 return (
                     <Layout>
-                        <Heading text="Configuration"></Heading>
+                        <Heading text="What’s Your Story: CMS" color="blue"></Heading>
                         <InitialSetup></InitialSetup>
                     </Layout>
                 );

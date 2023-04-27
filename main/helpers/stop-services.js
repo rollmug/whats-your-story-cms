@@ -16,7 +16,7 @@ const stopDockerServices = async () => {
 
     if (dockerExists === true) {
         try {
-            const results = await execShellCommand(`docker-compose -f ${dockerFile} down`);
+            const results = await execShellCommand(`docker-compose -f '${dockerFile}' down`);
 
             //console.log(results)
 
@@ -31,7 +31,7 @@ const stopDockerServices = async () => {
         }
     } else {
         //error - no docker file found
-        returnData.error = `Cannot locate the needed file(s) at ${dockerFile}`;
+        returnData.error = `Cannot locate the needed file(s) at '${dockerFile}'`;
     }
 
     return returnData;
