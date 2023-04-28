@@ -28,7 +28,7 @@ const launchMysql = async () => {
         //console.log('1. Docker compose file exists.');
 
         try {
-            const results = await execShellCommand(`docker-compose -f '${dockerFile}' up -d mysql`);
+            const results = await execShellCommand(`docker-compose -f "${dockerFile}" up -d mysql`);
 
             // console.log('2. Docker compose results:');
             // console.log(results);

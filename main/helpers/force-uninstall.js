@@ -1,9 +1,12 @@
 import execShellCommand from './exec-cmd';
 import Store from 'electron-store';
 import upath from 'upath';
-import fs from 'fs-extra'
+import fs from 'fs-extra';
+import os from 'os';
 import fixPath from 'fix-path';
 const settings = new Store();
+
+const platform = os.platform();
 
 /**
  * 
@@ -37,14 +40,14 @@ const forceUninstall = async () => {
     const dockerExists = await fs.pathExists(dockerFile);
     const returnData = {};
 
-    fixPath();
+    if(platform !== 'win32') fixPath();
 
     settings.set('appSettings.installed', false);
     settings.set('appSettings.dbInitialized', false);
 
     if (dockerExists === true) {
         try {
-            const cmd = `docker-compose -f '${dockerFile}' down`;
+            const cmd = `docker-compose -f "${dockerFile}" down`;
             const results = await execShellCommand(cmd);
             await removeAppDir();
 

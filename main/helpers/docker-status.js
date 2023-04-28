@@ -1,9 +1,12 @@
 import execShellCommand from './exec-cmd';
-import fs from 'fs-extra'
+import fs from 'fs-extra';
+import os from 'os';
 import Store from 'electron-store';
 import upath from 'upath';
 import fixPath from 'fix-path';
 const settings = new Store();
+
+const platform = os.platform();
 
 const dockerAppStatus = async () => {
     const appSettings = await settings.get('appSettings');
@@ -12,13 +15,13 @@ const dockerAppStatus = async () => {
     const dockerFile = upath.join(appDir, 'docker-compose.yml');
     const returnData = {};
     
-    fixPath();
+    if(platform !== 'win32') fixPath();
 
     const dockerExists = await fs.pathExists(dockerFile);
 
     if (dockerExists === true) {
         try {
-            const results = await execShellCommand(`docker-compose -f '${dockerFile}' ps -a --format 'json'`);
+            const results = await execShellCommand(`docker-compose -f "${dockerFile}" ps -a --format "json"`);
 
             if(results.includes('Cannot connect to the Docker daemon')) {
                 returnData.error = "Docker is not running.";

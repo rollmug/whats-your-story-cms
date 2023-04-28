@@ -45,14 +45,14 @@ function Dashboard() {
             if (typeof serv.directus === 'object') {
                 if (serv.directus.State === 'running') {
                     directusUp = true;
-                    directusStatus = `CMS service is running. ${serv.directus.Status}.`;
+                    directusStatus = `CMS service is running. ${serv.directus.Status ? serv.directus.Status : ''}`;
                 }
             }
 
             if (typeof serv.mysql === 'object') {
                 if (serv.mysql.State === 'running') {
                     mysqlUp = true;
-                    mySqlStatus = `Database is running. ${serv.mysql.Status}.`;
+                    mySqlStatus = `Database is running. ${serv.mysql.Status ? serv.mysql.Status : ''}`;
                 }
             }
 

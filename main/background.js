@@ -1,4 +1,5 @@
 import { app, ipcMain, shell, dialog } from 'electron';
+import os from 'os';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 import { lookpath } from 'lookpath';
@@ -12,7 +13,9 @@ import dockerAppStatus from './helpers/docker-status';
 import stopDockerServices from './helpers/stop-services';
 const settings = new Store();
 
-fixPath();
+const platform = os.platform();
+
+if (platform !== 'win32') fixPath();
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -119,7 +122,7 @@ ipcMain.on('docker-check', async (event, arg) => {
     info.msg = `Docker application not found. Is it installed?`;
     info.alert = 'error';
   } else {
-    const dockerInfo = await execShellCommand("docker info --format '{{json .}}'");
+    const dockerInfo = await execShellCommand(`docker info --format "{{json .}}"`);
     const docker = JSON.parse(dockerInfo);
     info.docker = docker;
 

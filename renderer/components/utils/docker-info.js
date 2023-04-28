@@ -1,12 +1,16 @@
 import execShellCommand from "./exec-cmd";
 import fixPath from 'fix-path';
 import commandExists from "command-exists";
+import { lookpath } from 'lookpath';
 import fs from 'fs-extra'
 import upath from 'upath';
+import os from 'os';
 import getSettingsFromCache from "./cache-settings";
 
+const platform = os.platform();
+
 const dockerInfo = async () => {
-    const dockerInfo = await execShellCommand("docker info --format '{{json .}}'");
+    const dockerInfo = await execShellCommand('docker info --format "{{json .}}"');
     return JSON.parse(dockerInfo);
 }
 
@@ -17,7 +21,8 @@ const dockerConfig = async () => {
     };
 
     try {
-        fixPath();
+        if(platform !== 'win32') fixPath();
+
         const dockerExists = await commandExists('docker');
 
         if (dockerExists) {
@@ -50,7 +55,7 @@ const dockerAppStatus = async () => {
 
     if (dockerExists === true) {
         try {
-            const results = await execShellCommand(`docker-compose -f '${dockerFile}' ps -a --format 'json'`);
+            const results = await execShellCommand(`docker-compose -f "${dockerFile}" ps -a --format "json"`);
 
             if(results.includes('Cannot connect to the Docker daemon')) {
                 returnData.error = "Docker is not running.";

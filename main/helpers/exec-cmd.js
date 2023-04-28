@@ -1,9 +1,11 @@
 import { exec } from 'child_process';
 import fixPath from 'fix-path';
+import os from 'os';
+const platform = os.platform();
 
 const execShellCommand = (cmd) => {
     return new Promise((resolve, reject) => {
-        fixPath();
+        if(platform !== 'win32') fixPath();
         exec(cmd, (error, stdout, stderr) => {
             if (error) {
                 reject(error);

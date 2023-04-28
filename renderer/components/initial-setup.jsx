@@ -161,7 +161,6 @@ const InitialSetup = () => {
         loadAppSettings();
 
         ipcRenderer.on('select-dirs-result', (event, data) => {
-            console.log(data);
             if (typeof data === 'object' && data.length > 0) {
                 setDirectory(data[0]);
                 setValue('directory', data[0], { shouldValidate: true });

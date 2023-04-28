@@ -16,7 +16,7 @@ const stopDockerServices = async () => {
 
     if (dockerExists === true) {
         try {
-            const results = await execShellCommand(`docker-compose -f '${dockerFile}' down`);
+            const results = await execShellCommand(`docker-compose -f "${dockerFile}" down`);
 
             //console.log(results)
 
