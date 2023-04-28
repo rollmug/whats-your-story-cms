@@ -2,7 +2,7 @@
   "private": true,
   "name": "directus-server-manager",
   "description": "Directus CMS Manager",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Dave Kobrenski <dave@rlmg.com>",
   "main": "app/background.js",
   "scripts": {
