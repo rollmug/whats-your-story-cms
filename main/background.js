@@ -28,11 +28,13 @@ if (isProd) {
 const checkInitAppSettings = async () => {
   const appSettings = await settings.get('appSettings');
   const userData = app.getPath('userData').replace(' (development)', '');
-  if (typeof appSettings === 'object' && Object.keys(appSettings) > 0) {
+
+  if (typeof appSettings === 'object' && Object.keys(appSettings).length > 0) {
     if (!appSettings.directory || appSettings.directory === '') {
       settings.set('appSettings.directory', userData);
     }
   } else {
+    console.log('Creating new config file')
     settings.set('appSettings', { directory: userData });
   }
 }

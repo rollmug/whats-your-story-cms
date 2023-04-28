@@ -64,8 +64,8 @@ const dockerAppStatus = async () => {
 
                 if(typeof data === 'object' && data.length > 0) {
                     const services = {
-                        directus: data.find(({ Name }) => Name === 'directus'),
-                        mysql: data.find(({ Name }) => Name === 'mysql')
+                        directus: data.find(({ Name }) => Name === 'directus_wys'),
+                        mysql: data.find(({ Name }) => Name === 'mysql_wys')
                     };
 
                     returnData.services = services;
