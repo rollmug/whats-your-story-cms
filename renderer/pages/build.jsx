@@ -194,7 +194,7 @@ function Build() {
                     <Layout>
                         <Heading text="Application Error"></Heading>
                         <Fragment>
-                            <Alert severity="danger" className="my-6">Could not retrieve settings.</Alert>
+                            <Alert severity="error" className="my-6">Could not retrieve settings.</Alert>
                             <article className="prose prose-slate my-4">There was a problem installing the application. Please click the below button to resolve any issues.</article>
                             <Link href="/"><Button variant="filled">Edit Configuration</Button></Link>
                         </Fragment>
@@ -207,7 +207,7 @@ function Build() {
                 <Layout>
                     <Heading text="Docker Error"></Heading>
                     <Fragment>
-                        <Alert severity="danger" className="my-6">Docker needs to be running.</Alert>
+                        <Alert severity="error" className="my-6">Docker needs to be running.</Alert>
                         <article className="prose prose-slate my-4">There was a problem installing the application. Please click the below button to resolve any issues.</article>
                         <Link href="/"><Button variant="filled">Edit Configuration</Button></Link>
                     </Fragment>

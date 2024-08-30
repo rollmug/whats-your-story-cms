@@ -85,6 +85,8 @@ function Dashboard() {
                 </Fragment>
             );
         }
+    } else {
+        console.log(data);
     }
 }
 

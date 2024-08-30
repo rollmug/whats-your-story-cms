@@ -21,7 +21,7 @@ const dockerAppStatus = async () => {
 
     if (dockerExists === true) {
         try {
-            const results = await execShellCommand(`docker-compose -f "${dockerFile}" ps -a --format "json"`);
+            const results = await execShellCommand(`docker compose -f "${dockerFile}" ps -a --format "json"`);
 
             if(results.includes('Cannot connect to the Docker daemon')) {
                 returnData.error = "Docker is not running.";

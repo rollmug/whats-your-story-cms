@@ -5,7 +5,7 @@ import seedDB from './seed-db';
 import initEnv from './init-env';
 
 const installAppFiles = async (appSettings) => {
-    const composeDataUrl = 'https://cdn.statically.io/gh/rollmug/static-assets/main/hcc-redux/docker-compose-1.0.9.yml';
+    const composeDataUrl = 'https://cdn.statically.io/gh/rollmug/static-assets/main/hcc-redux/docker-compose-1.1.0.yml';
     const sqlDataUrl = 'https://cdn.statically.io/gh/rollmug/static-assets/main/hcc-redux/init/01-directus.sql.txt';
     const dirFullPath = appSettings.directory;
     const results = {};

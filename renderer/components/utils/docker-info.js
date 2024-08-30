@@ -6,6 +6,7 @@ import fs from 'fs-extra'
 import upath from 'upath';
 import os from 'os';
 import getSettingsFromCache from "./cache-settings";
+// import jq from 'node-jq';
 
 const platform = os.platform();
 
@@ -45,22 +46,34 @@ const dockerConfig = async () => {
 }
 
 const dockerAppStatus = async () => {
+    console.log('loading docker app status...');
     const appSettings = await getSettingsFromCache();
     const dirFullPath = appSettings.directory;
     const appDir = upath.join(dirFullPath, 'directus-cms');
     const dockerFile = upath.join(appDir, 'docker-compose.yml');
     let returnData = {};
 
+    console.log('dockerFile:', dockerFile);
+
     const dockerExists = await fs.pathExists(dockerFile);
 
     if (dockerExists === true) {
         try {
-            const results = await execShellCommand(`docker-compose -f "${dockerFile}" ps -a --format "json"`);
-
+            console.log(`Checking status of docker services... ${dockerFile}`);
+            const results = await execShellCommand(`docker compose -f "${dockerFile}" ps -a`);
+            
             if(results.includes('Cannot connect to the Docker daemon')) {
                 returnData.error = "Docker is not running.";
             } else {
-                const data = JSON.parse(results);
+                //const data = JSON.parse(results); // 2024-08-30 this will now throw an error with the latest docker compose :(
+
+                const mysqlStatus = await execShellCommand("docker inspect --type=container mysql_wys -f '{{ .State.Status }}'");
+                const directusStatus = await execShellCommand("docker inspect --type=container directus_wys -f '{{ .State.Status }}'");
+
+                const data = [
+                    { Name: 'mysql_wys', State: mysqlStatus.trim() },
+                    { Name: 'directus_wys', State: directusStatus.trim() }
+                ];
 
                 if(typeof data === 'object' && data.length > 0) {
                     const services = {
@@ -74,6 +87,7 @@ const dockerAppStatus = async () => {
                 }
             }
         } catch(e) {
+            // console.log(e.message);
             returnData.error = e.message;
         }
     } else {

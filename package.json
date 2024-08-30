@@ -2,7 +2,7 @@
   "private": true,
   "name": "directus-server-manager",
   "description": "Directus CMS Manager",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "author": "Dave Kobrenski <dave@rlmg.com>",
   "main": "app/background.js",
   "scripts": {
@@ -10,6 +10,7 @@
     "build": "nextron build",
     "build:all": "nextron build --all",
     "build:mac": "nextron build --mac --x64",
+    "build:mac:universal": "nextron build --mac --universal",
     "build:win64": "nextron build --win --x64",
     "postinstall": "electron-builder install-app-deps"
   },
@@ -30,6 +31,7 @@
     "fs-json-store": "^8.0.1",
     "generate-password": "^1.7.0",
     "lookpath": "^1.2.2",
+    "node-jq": "^6.0.1",
     "react-hook-form": "^7.43.9",
     "spawn-sync": "^2.0.0",
     "swr": "^2.1.5",
