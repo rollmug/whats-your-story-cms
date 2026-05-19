@@ -1,9 +1,11 @@
 
 # What’s Your Story: CMS
 
+![screenshot](https://raw.githubusercontent.com/rollmug/static-assets/main/hcc-redux/whats-your-story-app-screenshot.png)
+
 <p align="center">
     
-    ![screensot](https://raw.githubusercontent.com/rollmug/static-assets/main/hcc-redux/whats-your-story-app-screenshot.png)
+    
     
 </p>
 
