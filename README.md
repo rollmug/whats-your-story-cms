@@ -2,7 +2,9 @@
 # What’s Your Story: CMS
 
 <p align="center">
-    <img src="https://cdn.statically.io/gh/rollmug/static-assets/main/hcc-redux/whats-your-story-app-screenshot.png" >
+    
+    ![screensot](https://raw.githubusercontent.com/rollmug/static-assets/main/hcc-redux/whats-your-story-app-screenshot.png)
+    
 </p>
 
 ## About
