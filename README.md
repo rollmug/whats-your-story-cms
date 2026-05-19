@@ -3,12 +3,6 @@
 
 ![screenshot](https://raw.githubusercontent.com/rollmug/static-assets/main/hcc-redux/whats-your-story-app-screenshot.png)
 
-<p align="center">
-    
-    
-    
-</p>
-
 ## About
 
 This desktop app serves as an installer and launcher for the _What’s Your Story_ CMS and API services on your machine. Just launch the app, and the wizard will walk you through the steps.
